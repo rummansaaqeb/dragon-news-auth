@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa6";
 
 const FindUs = () => {
   return (
@@ -9,10 +9,10 @@ const FindUs = () => {
           <FaFacebook></FaFacebook> Facebook
         </button>
         <button className="btn join-item justify-start">
-          <FaInstagram></FaInstagram> Instagram
+          <FaTwitter></FaTwitter> Twitter
         </button>
         <button className="btn join-item justify-start">
-          <FaFacebook></FaFacebook> Facebook
+          <FaInstagram></FaInstagram> Instagram
         </button>
       </div>
     </div>
