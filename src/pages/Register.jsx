@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const Register = () => {
 
@@ -18,23 +19,29 @@ const Register = () => {
         const password = form.get("password");
         console.log({ name, email, photo, password });
 
+        if (name.length < 5) {
+            toast.error("Name Must Be Longer Than 5 Characters");
+            return;
+        }
+
         createNewUser(email, password)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            toast.success("Your Account Has Been Registered Successfully");
-            navigate('/')
-        })
-        .catch(error => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            toast.error(errorCode, errorMessage);
-        })
+            .then(result => {
+                const user = result.user;
+                user.displayName = name;
+                setUser(user);
+                toast.success("Your Account Has Been Registered Successfully");
+                navigate('/')
+            })
+            .catch(error => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                toast.error(errorCode, errorMessage);
+            })
     }
 
     return (
         <div className="min-h-screen flex justify-center items-center">
+            <ScrollToTop></ScrollToTop>
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
                 <h2 className="text-2xl font-semibold text-center">Register your account</h2>
                 <form onSubmit={handleSubmit} className="card-body">

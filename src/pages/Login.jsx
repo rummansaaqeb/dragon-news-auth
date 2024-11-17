@@ -1,13 +1,15 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const Login = () => {
-
+    const location = useLocation();
     const navigate = useNavigate();
 
     const { logIn, setUser } = useContext(AuthContext);
+    const [error, setError] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,23 +19,23 @@ const Login = () => {
 
         console.log({ email, password });
         logIn(email, password)
-        .then(result => {
-            const user = result.user;
-            setUser(user);
-            toast.success("Logged In Successfully");
-            navigate('/');
-        })
-        .catch(error => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            toast.error(errorMessage, errorCode);
-        })
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                toast.success("Logged In Successfully");
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch(err => {
+                setError({ ...error, login:err.code })
+                toast.error("User Credentials Does Not Match");
+            })
     }
 
 
 
     return (
         <div className="min-h-screen flex justify-center items-center">
+            <ScrollToTop></ScrollToTop>
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
                 <h2 className="text-2xl font-semibold text-center">Login your account</h2>
                 <form onSubmit={handleSubmit} className="card-body">
