@@ -1,4 +1,4 @@
-import React from 'react';
+
 import swimming from '../../src/assets/swimming.png';
 import classroom from '../../src/assets/class.png';
 import playground from '../../src/assets/playground.png';

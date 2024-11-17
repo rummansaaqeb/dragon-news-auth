@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Header from "../components/Header";
 import RightNavbar from "../components/layout-component/RightNavbar";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const NewsDetails = () => {
 
@@ -12,6 +13,7 @@ const NewsDetails = () => {
 
     return (
         <div>
+            <ScrollToTop></ScrollToTop>
             <header>
                 <Header></Header>
             </header>
