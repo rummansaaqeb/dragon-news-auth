@@ -1,4 +1,3 @@
-import React from 'react';
 import advertisement from '../../src/assets/bg.png';
 
 const Advertisement = () => {

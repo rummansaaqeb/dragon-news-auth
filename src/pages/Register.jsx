@@ -8,7 +8,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    const { createNewUser, setUser } = useContext(AuthContext);
+    const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,10 +27,15 @@ const Register = () => {
         createNewUser(email, password)
             .then(result => {
                 const user = result.user;
-                user.displayName = name;
                 setUser(user);
-                toast.success("Your Account Has Been Registered Successfully");
-                navigate('/')
+                updateUserProfile({displayName: name, photoURL: photo})
+                .then(()=> {
+                    toast.success("Your Account Has Been Registered Successfully");
+                    navigate('/');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             })
             .catch(error => {
                 const errorCode = error.code;
