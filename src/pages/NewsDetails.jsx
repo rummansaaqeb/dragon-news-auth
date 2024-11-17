@@ -9,7 +9,7 @@ const NewsDetails = () => {
 
     const news = data.data[0];
 
-    console.log(news);
+    // console.log(news);
 
     return (
         <div>

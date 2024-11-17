@@ -17,7 +17,7 @@ const Register = () => {
         const photo = form.get("photo");
         const email = form.get("email");
         const password = form.get("password");
-        console.log({ name, email, photo, password });
+        // console.log({ name, email, photo, password });
 
         if (name.length < 5) {
             toast.error("Name Must Be Longer Than 5 Characters");
@@ -34,7 +34,7 @@ const Register = () => {
                     navigate('/');
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                 })
             })
             .catch(error => {
