@@ -1,7 +1,7 @@
 import SocialLogin from '../SocialLogin';
 import FindUs from '../FindUs';
 import QZone from '../QZone';
-import Advertisement from '../Advertisement ';
+import Advertisement from '../Advertisement';
 
 const RightNavbar = () => {
     return (
