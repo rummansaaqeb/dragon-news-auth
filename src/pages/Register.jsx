@@ -1,8 +1,11 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const { createNewUser, setUser } = useContext(AuthContext);
 
@@ -19,12 +22,14 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             setUser(user);
-            console.log(user);
+            toast.success("Your Account Has Been Registered Successfully");
+            navigate('/')
         })
         .catch(error => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            toast.error(errorCode, errorMessage);
         })
     }
 
@@ -62,7 +67,7 @@ const Register = () => {
                     </div>
                 </form>
                 <p className="text-center font-semibold">
-                    Already Have An Account? Please <Link className="text-red-500" to="/auth/register">Register</Link>
+                    Already Have An Account? Please <Link className="text-red-500" to="/auth/login">Login</Link>
                 </p>
             </div>
         </div>
